@@ -12,10 +12,10 @@ function Result() {
   useEffect(() => {
     const fetchResults = async () => {
       try {
-        const pollResponse = await axios.get(`http://localhost:5000/api/polls/${id}`);
+        const pollResponse = await axios.get(`https://live-polling-backend-puce.vercel.app/api/polls/${id}`);
         setQuestion(pollResponse.data);
 
-        const response = await axios.get(`http://localhost:5000/api/polls/${id}/results`);
+        const response = await axios.get(`https://live-polling-backend-puce.vercel.app/api/polls/${id}/results`);
         setResponses(response.data);
 
         setLoading(false);

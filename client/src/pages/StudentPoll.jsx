@@ -14,7 +14,7 @@ function StudentPoll() {
   useEffect(() => {
     const fetchQuestion = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/polls/active");
+        const response = await axios.get("https://live-polling-backend-puce.vercel.app/api/polls/active");
         setQuestion(response.data);
         setTimeLeft(response.data.timer);
         setLoading(false);
@@ -49,7 +49,7 @@ function StudentPoll() {
     if (!question || !selectedAnswer) return;
 
     try {
-      await axios.post(`http://localhost:5000/api/polls/${question._id}/submit`, {
+      await axios.post(`https://live-polling-backend-puce.vercel.app/api/polls/${question._id}/submit`, {
         studentName: "Student1",
         answer: selectedAnswer,
       });

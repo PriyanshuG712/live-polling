@@ -53,7 +53,7 @@ function TeacherPage() {
     };
 
     try {
-      const response = await axios.post("http://localhost:5000/api/polls", pollData);
+      const response = await axios.post("https://live-polling-backend-puce.vercel.app/api/polls", pollData);
       console.log("Poll submitted successfully:", response.data);
       navigate(`/result/${response.data.id}`);
     } catch (error) {
