@@ -11,11 +11,9 @@ function StudentPage() {
   };
 
   const handleContinue = () => {
-    if (name.trim()) {
-      navigate("/pollpage", { state: { name } });
-    } else {
-      alert("Please enter your name.");
-    }
+    
+      navigate("/studentpoll", { state: { name } });
+    
   };
 
   return (

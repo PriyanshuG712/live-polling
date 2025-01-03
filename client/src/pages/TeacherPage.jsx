@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import reactLogo from "../assets/Vector.svg";
+import axios from "axios";
 
 function TeacherPage() {
   const [text, setText] = useState("");
@@ -46,11 +47,19 @@ function TeacherPage() {
   const handleSubmit = async () => {
     const pollData = {
       question: text,
-      options: options.map((option) => ({ text: option.text, correct: option.correct })),
-      timer: selectedTimer
+      options: options.map((option) => option.text),
+      timer: parseInt(selectedTimer.split(" ")[0]),
+      status: "active"
     };
-    console.log("Poll Submitted:", pollData);
-    navigate("/pollpage");
+
+    try {
+      const response = await axios.post("http://localhost:5000/api/polls", pollData);
+      console.log("Poll submitted successfully:", response.data);
+      navigate(`/result/${response.data.id}`);
+    } catch (error) {
+      console.error("Error submitting poll:", error.response?.data || error.message);
+      alert("Failed to submit poll. Please try again.");
+    }
   };
 
   return (
