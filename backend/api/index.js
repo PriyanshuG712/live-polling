@@ -124,9 +124,6 @@ app.post("/api/polls/:id/submit", async (req, res) => {
     response.optionCounts[optionIndex].count += 1;
     await response.save();
 
-    // Emit updated poll results via Socket.IO
-    io.emit("pollResults", { pollId: id, responses: response.optionCounts });
-
     res.status(201).json({ message: "Response submitted successfully" });
   } catch (error) {
     console.error("Error submitting response:", error);
