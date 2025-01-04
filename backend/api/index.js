@@ -52,8 +52,6 @@ app.post("/api/polls", async (req, res) => {
       optionCounts: options.map((option) => ({ option, count: 0 })),
     });
     await response.save();
-
-    io.emit("newPoll", poll);
     res.status(201).json({ id: poll._id, message: "Poll created successfully" });
   } catch (error) {
     console.error("Error creating poll:", error);
